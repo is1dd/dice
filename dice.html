@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trrow Dice</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-size: 30px;
+            background-color: antiquewhite;
+            
+        }
+
+        #diceBody {
+            width: 30%;
+            margin:0 auto; 
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 100px;
+            gap: 20px;
+           
+        }
+
+        #diceBody>div {
+            
+            margin-top: 10%;
+            border: 1px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #winner {
+            width: 30%;
+            
+            
+            border: 2px solid black;
+            height: 100px;
+            margin: 0 auto;
+            margin-bottom: 30px;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #roll {
+            /* background-color: #6b9bfd; */
+            /* background-color: #0093E9; */
+           /* background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%); */
+            border: none;
+            width: 100%;
+            padding: 10px;
+            margin: 0 auto;
+            color: black;
+        }
+
+        #diceRoll {
+            width: 30%;
+            margin: 0 auto;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="winner">
+
+    </div>
+    <div id="diceBody">
+        <div id="member-1"></div>
+        <div id="member-2"></div>
+        <div id="member-3"></div>
+    </div>
+
+    <div id="diceRoll">
+        <button id="roll">ROLL THE DICE</button>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+
+
+
+    document.getElementById("roll").addEventListener("click", rollDice);
+
+    function rollDice() {
+        document.getElementById("member-1").style.backgroundColor = "";
+        document.getElementById("member-2").style.backgroundColor = "";
+        document.getElementById("member-3").style.backgroundColor = "";
+        document.getElementById("winner").innerText = "";
+
+
+        let a = Math.floor((Math.random() * 6) + 1);
+        let b = Math.floor((Math.random() * 6) + 1);
+        let c = Math.floor((Math.random() * 6) + 1);
+        document.getElementById("member-1").innerText = a;
+        document.getElementById("member-2").innerText = b;
+        document.getElementById("member-3").innerText = c;
+
+
+
+        if (a > b && a > c) {
+            document.getElementById("winner").innerText = a;
+            document.getElementById("member-1").style.backgroundColor = "green";
+
+            if (b > c) {
+                document.getElementById("member-2").style.backgroundColor = "yellow"
+            } else {
+                document.getElementById("member-2").style.backgroundColor = "red"
+            }
+            if (c > b) {
+                document.getElementById("member-3").style.backgroundColor = "yellow"
+            } else {
+                document.getElementById("member-3").style.backgroundColor = "red";
+            }
+
+        } else if (b > a && b > c) {
+            document.getElementById("winner").innerText = b;
+            document.getElementById("member-2").style.backgroundColor = "green";
+
+            if (a > c) {
+                document.getElementById("member-1").style.backgroundColor = "yellow"
+            } else {
+                document.getElementById("member-1").style.backgroundColor = "red"
+            }
+            if (c > a) {
+                document.getElementById("member-3").style.backgroundColor = "yellow"
+            } else {
+                document.getElementById("member-3").style.backgroundColor = "red"
+            }
+
+        } else if (c > a && c > b) {
+            document.getElementById("winner").innerText = c;
+            document.getElementById("member-3").style.backgroundColor = "green";
+
+            if (a > b) {
+                document.getElementById("member-1").style.backgroundColor = "yellow"
+            } else {
+                document.getElementById("member-1").style.backgroundColor = "red"
+            }
+            if (b > a) {
+                document.getElementById("member-2").style.backgroundColor = "yellow"
+            } else {
+                document.getElementById("member-2").style.backgroundColor = "red"
+            }
+        }
+        if (a == b) {
+            document.getElementById("member-1").style.backgroundColor = "blue";
+            document.getElementById("member-2").style.backgroundColor = "blue";
+        }
+        if (b == c) {
+            document.getElementById("member-2").style.backgroundColor = "blue";
+            document.getElementById("member-3").style.backgroundColor = "blue";
+        }
+        if (c == a) {
+            document.getElementById("member-1").style.backgroundColor = "blue";
+            document.getElementById("member-3").style.backgroundColor = "blue";
+        }
+
+    }
+
+
+
+
+</script>
